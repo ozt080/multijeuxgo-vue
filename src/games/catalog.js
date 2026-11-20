@@ -1,0 +1,20 @@
+export const GAMES_CATALOG = [
+  { slug: 'mini-golf', nom: 'Mini-Golf', categorie: 'Sport', couleur: '#059669', desc: '3 parcours avec sable, eau et bumpers en un minimum de coups.' },
+  { slug: 'foot-soccer', nom: 'Table Soccer', categorie: 'Sport', couleur: '#15803d', desc: 'Propulse tes palets pour marquer 3 buts face à ton ami ou l’IA.' },
+  { slug: 'basket', nom: 'Basket Shoot', categorie: 'Sport', couleur: '#ea580c', desc: 'Enchaîne les paniers et les swishs x2 sur panier mobile.' },
+  { slug: 'bowling', nom: 'Bowling Strike', categorie: 'Sport', couleur: '#1d4ed8', desc: 'Ajuste ta position et l’angle de tir pour faire tomber les 10 quilles.' },
+  { slug: 'ping-pong', nom: 'Ping-Pong', categorie: 'Sport', couleur: '#0e7490', desc: 'Duel rapide avec effets liftés : premier à 7 points gagne.' },
+  { slug: 'badminton', nom: 'Badminton Smash', categorie: 'Sport', couleur: '#0f766e', desc: 'Saute et place des smashs enflammés au-dessus du filet.' },
+  { slug: 'billard', nom: 'Billard 8-Ball', categorie: 'Sport', couleur: '#047857', desc: 'Empoche toutes tes billes colorées puis la 8 noire.' },
+  { slug: 'uno', nom: 'Uno Express', categorie: 'Plateau & Cartes', couleur: '#dc2626', desc: 'Cartes +2, Passer, Joker couleur et +4 en duel direct.' },
+  { slug: 'ludo', nom: 'Ludo Royal', categorie: 'Plateau & Cartes', couleur: '#ca8a04', desc: 'Plateau en croix avec 2 pions, cases étoiles et captures.' },
+  { slug: 'puissance-4', nom: 'Puissance 4', categorie: 'Plateau & Cartes', couleur: '#4f46e5', desc: 'Aligne 4 jetons horizontalement, verticalement ou en diagonale.' },
+  { slug: 'morpion', nom: 'Morpion Neon', categorie: 'Plateau & Cartes', couleur: '#be185d', desc: 'Manche éclair en 3x3 contre un ami ou l’IA tactique.' },
+  { slug: 'pinball', nom: 'Pinball Arcade', categorie: 'Arcade', couleur: '#7c3aed', desc: '3 billes, multiplicateurs x3 et bumpers lumineux.' },
+  { slug: 'course-voiture', nom: 'Course Turbo', categorie: 'Arcade', couleur: '#2563eb', desc: '4 voies, pièces d’or, bouclier et turbo sur l’autoroute.' },
+  { slug: 'snake-neon', nom: 'Snake Neon', categorie: 'Arcade', couleur: '#16a34a', desc: 'Avale les orbes lumineux et dorés sans toucher les murs.' },
+  { slug: 'casse-briques', nom: 'Casse-Briques', categorie: 'Arcade', couleur: '#9333ea', desc: 'Briques blindées, raquette large et bonus multi-balles.' },
+  { slug: 'plus-ou-moins', nom: 'Plus ou Moins', categorie: 'Réflexion', couleur: '#4338ca', desc: 'Trouve le nombre mystère (1-100) grâce au radar thermique.' },
+  { slug: 'pfc', nom: 'Pierre Feuille Ciseaux', categorie: 'Réflexion', couleur: '#d97706', desc: 'Combat à 100 PV contre ton ami ou l’ordinateur.' },
+  { slug: 'quiz-geek', nom: 'Quiz Culture Geek', categorie: 'Réflexion', couleur: '#0284c7', desc: '8 questions chronométrées avec bonus rapidité et joker 50/50.' }
+]
