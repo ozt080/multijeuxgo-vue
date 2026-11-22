@@ -22,8 +22,8 @@ const myPseudo = computed(() => props.profile?.pseudo || props.profile?.username
 const opponentPseudo = computed(() => {
   if (!room.value) {
     if (slug.value === 'uno') return 'Jess_522'
-    if (slug.value === 'soccer' || slug.value === 'table-soccer') return 'readper'
-    if (slug.value === 'minigolf' || slug.value === 'mini-golf') return 'keepmecloser'
+    if (['soccer', 'table-soccer', 'foot-soccer'].includes(slug.value)) return 'readper'
+    if (['minigolf', 'mini-golf', 'golf'].includes(slug.value)) return 'keepmecloser'
     return 'Adversaire'
   }
   return (myRole.value === 'hote' ? room.value.guest_pseudo : room.value.host_pseudo) || 'Adversaire'
@@ -49,8 +49,10 @@ const isDomGame = computed(() => [
   'quiz-geek',
   'soccer',
   'table-soccer',
+  'foot-soccer',
   'minigolf',
-  'mini-golf'
+  'mini-golf',
+  'golf'
 ].includes(slug.value))
 
 // Synthétiseur audio Web Audio API
@@ -450,7 +452,7 @@ onUnmounted(() => {
 
       <!-- TABLE SOCCER / FOOT STYLE PLATO -->
       <TableSoccerPlatoGame
-        v-else-if="slug === 'soccer' || slug === 'table-soccer'"
+        v-else-if="['soccer', 'table-soccer', 'foot-soccer'].includes(slug)"
         :mode="salonCode && room ? 'multi' : 'solo'"
         :player-pseudo="myPseudo"
         :opponent-pseudo="opponentPseudo"
@@ -462,7 +464,7 @@ onUnmounted(() => {
 
       <!-- MINI-GOLF STYLE PLATO -->
       <MiniGolfPlatoGame
-        v-else-if="slug === 'minigolf' || slug === 'mini-golf'"
+        v-else-if="['minigolf', 'mini-golf', 'golf'].includes(slug)"
         :mode="salonCode && room ? 'multi' : 'solo'"
         :player-pseudo="myPseudo"
         :opponent-pseudo="opponentPseudo"
