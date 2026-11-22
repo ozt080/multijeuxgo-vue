@@ -3,6 +3,9 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { supabase } from '../lib/supabase'
 import { GAMES_CATALOG } from '../games/catalog'
+import UnoPlatoGame from '../components/UnoPlatoGame.vue'
+import TableSoccerPlatoGame from '../components/TableSoccerPlatoGame.vue'
+import MiniGolfPlatoGame from '../components/MiniGolfPlatoGame.vue'
 
 const props = defineProps(['profile'])
 const emit = defineEmits(['refresh-profile'])
@@ -14,18 +17,41 @@ const gameInfo = computed(() => GAMES_CATALOG.find(g => g.slug === slug.value) |
 
 const room = ref(null)
 const myRole = computed(() => (!room.value || !props.profile) ? 'solo' : (room.value.host_id === props.profile.id ? 'hote' : 'invite'))
+const isHost = computed(() => myRole.value === 'hote' || myRole.value === 'solo')
+const myPseudo = computed(() => props.profile?.pseudo || props.profile?.username || 'boztas')
+const opponentPseudo = computed(() => {
+  if (!room.value) {
+    if (slug.value === 'uno') return 'Jess_522'
+    if (slug.value === 'soccer' || slug.value === 'table-soccer') return 'readper'
+    if (slug.value === 'minigolf' || slug.value === 'mini-golf') return 'keepmecloser'
+    return 'Adversaire'
+  }
+  return (myRole.value === 'hote' ? room.value.guest_pseudo : room.value.host_pseudo) || 'Adversaire'
+})
+
 const soundEnabled = ref(true)
 const hintText = ref('')
 const victoryBanner = ref('')
 const finished = ref(false)
 const canvasRef = ref(null)
-const domRef = ref(null)
 
 let roomSub = null
 let pollTimer = null
 let rafId = null
 
-const isDomGame = computed(() => ['morpion', 'puissance-4', 'uno', 'ludo', 'pfc', 'plus-ou-moins', 'quiz-geek'].includes(slug.value))
+const isDomGame = computed(() => [
+  'morpion',
+  'puissance-4',
+  'uno',
+  'ludo',
+  'pfc',
+  'plus-ou-moins',
+  'quiz-geek',
+  'soccer',
+  'table-soccer',
+  'minigolf',
+  'mini-golf'
+].includes(slug.value))
 
 // Synthétiseur audio Web Audio API
 let audioCtx = null
@@ -116,6 +142,12 @@ async function finishSoloOrDuel(points, message) {
     } catch {}
   }
   victoryBanner.value = `🎉 ${message} (+${points} pts)`
+}
+
+function handlePlatoWin(payload) {
+  const won = payload?.winner === 'me'
+  const pts = won ? 160 : 40
+  finishSoloOrDuel(pts, won ? `Victoire sur ${gameInfo.value.nom} !` : `Partie terminée sur ${gameInfo.value.nom}`)
 }
 
 // --- JEU 1 : MORPION (PvP + Solo) ---
@@ -403,6 +435,42 @@ onUnmounted(() => {
         <h3>⏳ En attente de ton ami...</h3>
         <p>Envoie le code <strong>{{ salonCode }}</strong> à ton ami : dès qu'il rejoint, la partie démarre instantanément !</p>
       </div>
+
+      <!-- UNO STYLE PLATO -->
+      <UnoPlatoGame
+        v-else-if="slug === 'uno'"
+        :mode="salonCode && room ? 'multi' : 'solo'"
+        :player-pseudo="myPseudo"
+        :opponent-pseudo="opponentPseudo"
+        :room-state="room?.state"
+        :is-host="isHost"
+        @sync-state="(st) => updateRoomState(st, false)"
+        @win="handlePlatoWin"
+      />
+
+      <!-- TABLE SOCCER / FOOT STYLE PLATO -->
+      <TableSoccerPlatoGame
+        v-else-if="slug === 'soccer' || slug === 'table-soccer'"
+        :mode="salonCode && room ? 'multi' : 'solo'"
+        :player-pseudo="myPseudo"
+        :opponent-pseudo="opponentPseudo"
+        :room-state="room?.state"
+        :is-host="isHost"
+        @sync-state="(st) => updateRoomState(st, false)"
+        @win="handlePlatoWin"
+      />
+
+      <!-- MINI-GOLF STYLE PLATO -->
+      <MiniGolfPlatoGame
+        v-else-if="slug === 'minigolf' || slug === 'mini-golf'"
+        :mode="salonCode && room ? 'multi' : 'solo'"
+        :player-pseudo="myPseudo"
+        :opponent-pseudo="opponentPseudo"
+        :room-state="room?.state"
+        :is-host="isHost"
+        @sync-state="(st) => updateRoomState(st, false)"
+        @win="handlePlatoWin"
+      />
 
       <!-- MORPION -->
       <div v-else-if="slug === 'morpion'" class="dom-box">
