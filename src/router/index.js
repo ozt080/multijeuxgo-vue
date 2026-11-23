@@ -9,7 +9,8 @@ const router = createRouter({
   routes: [
     { path: '/', name: 'lobby', component: LobbyView },
     { path: '/login', name: 'login', component: LoginView },
-    { path: '/jeu/:slug', name: 'game', component: GameView, meta: { requiresAuth: true } }
+    { path: '/jeu/:slug', name: 'game', component: GameView, meta: { requiresAuth: true } },
+    { path: '/confidentialite', name: 'privacy', component: () => import('../views/PrivacyView.vue') }
   ]
 })
 

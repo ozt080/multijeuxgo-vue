@@ -137,6 +137,7 @@ onMounted(fetchLeaderboard)
             <p class="muted">{{ g.desc }}</p>
             <div class="actions">
               <router-link :to="`/jeu/${g.slug}`" class="btn-solo" :style="{ background: g.couleur }">Solo</router-link>
+              <router-link to="/confidentialite" style="color:#94a3b8;font-size:0.82rem;">Confidentialité & suppression de compte</router-link>
               <button class="btn-friends" @click="createRoom(g.slug)">👥 Amis</button>
             </div>
           </div>
