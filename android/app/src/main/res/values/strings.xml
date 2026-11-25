@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MultiJeuxGo</string>
+    <string name="title_activity_main">MultiJeuxGo</string>
+    <string name="package_name">com.multijeuxgo.app</string>
+    <string name="custom_url_scheme">com.multijeuxgo.app</string>
+</resources>

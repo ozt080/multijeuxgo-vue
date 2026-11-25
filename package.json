@@ -1,19 +1,23 @@
 {
-    "version":  "1.0.0",
-    "name":  "multijeuxgo-vue",
-    "scripts":  {
-                    "dev":  "vite",
-                    "build":  "vite build"
-                },
-    "devDependencies":  {
-                            "vite":  "^6.0.0",
-                            "@vitejs/plugin-vue":  "^5.2.1"
-                        },
-    "type":  "module",
-    "dependencies":  {
-                         "@supabase/supabase-js":  "^2.49.1",
-                         "vue-router":  "^4.5.0",
-                         "vue":  "^3.5.13"
-                     },
-    "private":  true
+    "version": "1.0.0",
+    "name": "multijeuxgo-vue",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^5.2.1",
+        "vite": "^6.0.0"
+    },
+    "type": "module",
+    "dependencies": {
+        "@capacitor/android": "^8.6.2",
+        "@capacitor/cli": "^8.6.2",
+        "@capacitor/core": "^8.6.2",
+        "@capacitor/ios": "^8.6.2",
+        "@supabase/supabase-js": "^2.49.1",
+        "vue": "^3.5.13",
+        "vue-router": "^4.5.0"
+    },
+    "private": true
 }
