@@ -5,7 +5,7 @@ workflows:
     environment:
       groups:
         - supabase_env
-      node: 20
+      node: 22
       java: 17
     scripts:
       - name: Installer les dependances et compiler Vue
